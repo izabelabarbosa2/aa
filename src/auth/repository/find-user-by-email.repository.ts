@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/shared/database/prisma.datebase";
 
 @Injectable()
-export class FindUseByEmailRepository {
+export class FindUserByEmailRepository {
     constructor(private readonly prisma: PrismaService){}
 
     async findByEmail(email: string){
