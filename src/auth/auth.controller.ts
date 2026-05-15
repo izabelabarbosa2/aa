@@ -3,6 +3,8 @@ import { register } from "module";
 import { RegisterDto } from "./dto/register.dto";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
+import { CurrentUser } from "./current-user.decorator";
+import { JwtAuthGuard } from "./jwt-auth.guard";
 
 @Controller('auth')
 export class AuthController{
@@ -18,9 +20,9 @@ export class AuthController{
         return await this.authService.login(data);
     }
 
- //   @UseGuards(JwtAuthGuard)
-   // @Get('me')
-    //me(@CurrentUser() user: {id: string; email: string}){
-      //  return user;
-    //}
+    @UseGuards(JwtAuthGuard)
+    @Get('me')
+    me(@CurrentUser() user: {id: string; email: string}){
+        return user;
+    }
 }
